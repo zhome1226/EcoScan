@@ -2,6 +2,8 @@
 
 ECMonitor is a multi-agent workspace for rebuilding literature-backed environmental monitoring databases and moving validated evidence all the way to analytics and publication.
 
+The retrieval layer now supports [`scansci-pdf`](https://github.com/Rimagination/scansci-pdf) as an optional acquisition backend. ECMonitor still owns source policy, provenance manifests, and integrity checks; `scansci-pdf` is used only to improve DOI/title resolution, batch download, institutional access, caching, and diagnostics when it is explicitly enabled.
+
 The repository is organized around six specialist agents plus reusable retrieval and extraction skills:
 
 - `ResearchManager`
@@ -71,8 +73,11 @@ See `docs/multi-agent-architecture.md` for artifacts and gates.
 
 1. direct open PDF
 2. publisher API / harvest pipeline
-3. Zotero + institutional access
-4. browser-assisted search and capture
+3. optional `scansci-pdf` backend in legal/OA/institution-first mode
+4. Zotero + institutional access
+5. browser-assisted search and capture
+
+`scansci-pdf` is a downloader backend, not a source authority. Extended routes such as Sci-Hub, LibGen, or Tor are not default ECMonitor retrieval paths; they require explicit project approval and must be recorded in the retrieval manifest.
 
 Every downloaded file must pass integrity checks before extraction:
 
